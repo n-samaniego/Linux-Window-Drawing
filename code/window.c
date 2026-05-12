@@ -15,8 +15,8 @@ void fill_buffer(uint32_t *array, int width, int height, uint32_t color) {
 
 }
 
-uint32_t make_color(uint8_t r, uint8_t g, uint8_t b) {
-    return r<<16 | g<<8 | b;
+uint32_t make_color(uint8_t a, uint8_t r, uint8_t g, uint8_t b) {
+    return a<<24 | r<<16 | g<<8 | b;
 }
 
 int main(void) {
@@ -25,6 +25,7 @@ int main(void) {
     int height = 480;
 
     uint32_t color;
+    uint8_t alpha;
     uint8_t red;
     uint8_t green;
     uint8_t blue;
@@ -32,7 +33,7 @@ int main(void) {
     //ask for color:
 
 
-    color = make_color(red, green, blue);
+    color = make_color(alpha, red, green, blue);
 
 
     // initialize pixel buffer array
