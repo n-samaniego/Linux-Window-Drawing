@@ -1,7 +1,32 @@
+#include "os.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <X11/Xlib.h>
+
+static Display *g_display = NULL;
+
+struct os_window {
+    Display *display;
+    Window window;
+    int width;
+    int height;
+};
+
+void os_init() {
+    g_display = XOpenDisplay(NULL);
+    if (g_display == NULL) {
+        fprintf(stderr, "failed to open display\n");
+        exit(1);
+    }
+}
+
+
+os_window* os_create_window(int width, int height, const char* title) {
+    struct os_window window;
+    window.display = XCreateSimpleWindow(g_display);
+
+}
 
 void fill_buffer(uint32_t *array, int width, int height, uint32_t color) {
 
